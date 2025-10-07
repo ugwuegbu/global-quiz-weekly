@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Global Quiz - Week 5</title>
+<style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .question { margin-bottom: 20px; }
+        .leaderboard { margin-top: 40px; }
+    </style>
+</head>
+<body>
+<h2>Global Quiz - Week 5</h2>
+<label>Enter your name: <input id="username" type="text"/></label>
+<form id="quizForm">
+<div class="question"><p>Q1: Which US rapper is known for 'Sicko Mode'?</p>
+<label><input name="q0" type="radio" value="Travis Scott"/> Travis Scott</label><br/>
+<label><input name="q0" type="radio" value="Drake"/> Drake</label><br/>
+<label><input name="q0" type="radio" value="Kanye West"/> Kanye West</label><br/>
+<label><input name="q0" type="radio" value="Lil Baby"/> Lil Baby</label><br/>
+</div>
+<div class="question"><p>Q2: Which Nigerian artist is known for 'Peru'?</p>
+<label><input name="q1" type="radio" value="Fireboy DML"/> Fireboy DML</label><br/>
+<label><input name="q1" type="radio" value="Joeboy"/> Joeboy</label><br/>
+<label><input name="q1" type="radio" value="Kizz Daniel"/> Kizz Daniel</label><br/>
+<label><input name="q1" type="radio" value="Rema"/> Rema</label><br/>
+</div>
+<div class="question"><p>Q3: Which UK monarch recently passed away in 2022?</p>
+<label><input name="q2" type="radio" value="Queen Elizabeth II"/> Queen Elizabeth II</label><br/>
+<label><input name="q2" type="radio" value="King George VI"/> King George VI</label><br/>
+<label><input name="q2" type="radio" value="Queen Victoria"/> Queen Victoria</label><br/>
+<label><input name="q2" type="radio" value="King Charles I"/> King Charles I</label><br/>
+</div>
+<div class="question"><p>Q4: Which UK TV show features the character 'Sherlock Holmes'?</p>
+<label><input name="q3" type="radio" value="Sherlock"/> Sherlock</label><br/>
+<label><input name="q3" type="radio" value="Luther"/> Luther</label><br/>
+<label><input name="q3" type="radio" value="Doctor Who"/> Doctor Who</label><br/>
+<label><input name="q3" type="radio" value="Peaky Blinders"/> Peaky Blinders</label><br/>
+</div>
+<div class="question"><p>Q5: Which US artist released 'Anti'?</p>
+<label><input name="q4" type="radio" value="Rihanna"/> Rihanna</label><br/>
+<label><input name="q4" type="radio" value="Beyoncé"/> Beyoncé</label><br/>
+<label><input name="q4" type="radio" value="Ariana Grande"/> Ariana Grande</label><br/>
+<label><input name="q4" type="radio" value="Nicki Minaj"/> Nicki Minaj</label><br/>
+</div>
+<div class="question"><p>Q6: Which US holiday is celebrated on the fourth Thursday of November?</p>
+<label><input name="q5" type="radio" value="Thanksgiving"/> Thanksgiving</label><br/>
+<label><input name="q5" type="radio" value="Independence Day"/> Independence Day</label><br/>
+<label><input name="q5" type="radio" value="Labor Day"/> Labor Day</label><br/>
+<label><input name="q5" type="radio" value="Memorial Day"/> Memorial Day</label><br/>
+</div>
+<div class="question"><p>Q7: Which Nigerian dish is made with pounded yam and egusi?</p>
+<label><input name="q6" type="radio" value="Swallow"/> Swallow</label><br/>
+<label><input name="q6" type="radio" value="Jollof Rice"/> Jollof Rice</label><br/>
+<label><input name="q6" type="radio" value="Moi Moi"/> Moi Moi</label><br/>
+<label><input name="q6" type="radio" value="Akara"/> Akara</label><br/>
+</div>
+<div class="question"><p>Q8: Which UK city is famous for The Beatles?</p>
+<label><input name="q7" type="radio" value="Liverpool"/> Liverpool</label><br/>
+<label><input name="q7" type="radio" value="London"/> London</label><br/>
+<label><input name="q7" type="radio" value="Manchester"/> Manchester</label><br/>
+<label><input name="q7" type="radio" value="Bristol"/> Bristol</label><br/>
+</div>
+<div class="question"><p>Q9: Which UK band released 'Yellow'?</p>
+<label><input name="q8" type="radio" value="Coldplay"/> Coldplay</label><br/>
+<label><input name="q8" type="radio" value="Oasis"/> Oasis</label><br/>
+<label><input name="q8" type="radio" value="Blur"/> Blur</label><br/>
+<label><input name="q8" type="radio" value="Radiohead"/> Radiohead</label><br/>
+</div>
+<div class="question"><p>Q10: Which Nigerian city is known for Yabacon Valley?</p>
+<label><input name="q9" type="radio" value="Lagos"/> Lagos</label><br/>
+<label><input name="q9" type="radio" value="Abuja"/> Abuja</label><br/>
+<label><input name="q9" type="radio" value="Port Harcourt"/> Port Harcourt</label><br/>
+<label><input name="q9" type="radio" value="Ibadan"/> Ibadan</label><br/>
+</div>
+<button onclick="submitQuiz()" type="button">Submit</button>
+</form>
+<div id="result"></div>
+<div class="leaderboard">
+<h3>Leaderboard</h3>
+<ol id="leaderboardList"></ol>
+</div>
+<script>
+    const correctAnswers = ["Travis Scott", "Fireboy DML", "Queen Elizabeth II", "Sherlock", "Rihanna", "Thanksgiving", "Swallow", "Liverpool", "Coldplay", "Lagos"];
+
+    function submitQuiz() {
+        const username = document.getElementById("username").value.trim();
+        if (!username) {
+            alert("Please enter your name.");
+            return;
+        }
+        let score = 0;
+        for (let i = 0; i < correctAnswers.length; i++) {
+            const radios = document.getElementsByName("q" + i);
+            for (const radio of radios) {
+                if (radio.checked && radio.value === correctAnswers[i]) {
+                    score++;
+                }
+            }
+        }
+        document.getElementById("result").innerHTML = `<h3>${username}, your score is ${score}/10</h3>`;
+        updateLeaderboard(username, score);
+    }
+
+    function updateLeaderboard(name, score) {
+        const key = "leaderboard_" + "Global_Quiz_-_Week_5";
+        let leaderboard = JSON.parse(localStorage.getItem(key)) || [];
+        leaderboard.push({name, score});
+        leaderboard.sort((a, b) => b.score - a.score);
+        leaderboard = leaderboard.slice(0, 10);
+        localStorage.setItem(key, JSON.stringify(leaderboard));
+        renderLeaderboard(leaderboard);
+    }
+
+    function renderLeaderboard(data) {
+        const list = document.getElementById("leaderboardList");
+        list.innerHTML = "";
+        data.forEach(entry => {
+            const li = document.createElement("li");
+            li.textContent = `${entry.name} - ${entry.score}`;
+            list.appendChild(li);
+        });
+    }
+
+    window.onload = function() {
+        const key = "leaderboard_" + "Global_Quiz_-_Week_5";
+        const data = JSON.parse(localStorage.getItem(key)) || [];
+        renderLeaderboard(data);
+    }
+</script>
+</body>
+</html>

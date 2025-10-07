@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Global Quiz - Week 1</title>
+<style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .question { margin-bottom: 20px; }
+        .leaderboard { margin-top: 40px; }
+    </style>
+</head>
+<body>
+<h2>Global Quiz - Week 1</h2>
+<label>Enter your name: <input id="username" type="text"/></label>
+<form id="quizForm">
+<div class="question"><p>Q1: Which Nigerian artist released the hit song 'Calm Down'?</p>
+<label><input name="q0" type="radio" value="Rema"/> Rema</label><br/>
+<label><input name="q0" type="radio" value="Wizkid"/> Wizkid</label><br/>
+<label><input name="q0" type="radio" value="Burna Boy"/> Burna Boy</label><br/>
+<label><input name="q0" type="radio" value="Davido"/> Davido</label><br/>
+</div>
+<div class="question"><p>Q2: Which UK singer is known for the album '21'?</p>
+<label><input name="q1" type="radio" value="Adele"/> Adele</label><br/>
+<label><input name="q1" type="radio" value="Dua Lipa"/> Dua Lipa</label><br/>
+<label><input name="q1" type="radio" value="Ed Sheeran"/> Ed Sheeran</label><br/>
+<label><input name="q1" type="radio" value="Jessie J"/> Jessie J</label><br/>
+</div>
+<div class="question"><p>Q3: Which US city is nicknamed 'The Big Apple'?</p>
+<label><input name="q2" type="radio" value="New York"/> New York</label><br/>
+<label><input name="q2" type="radio" value="Los Angeles"/> Los Angeles</label><br/>
+<label><input name="q2" type="radio" value="Chicago"/> Chicago</label><br/>
+<label><input name="q2" type="radio" value="Miami"/> Miami</label><br/>
+</div>
+<div class="question"><p>Q4: Which Nigerian movie features the character 'Osuofia'?</p>
+<label><input name="q3" type="radio" value="Osuofia in London"/> Osuofia in London</label><br/>
+<label><input name="q3" type="radio" value="Living in Bondage"/> Living in Bondage</label><br/>
+<label><input name="q3" type="radio" value="Aki na Ukwa"/> Aki na Ukwa</label><br/>
+<label><input name="q3" type="radio" value="The Wedding Party"/> The Wedding Party</label><br/>
+</div>
+<div class="question"><p>Q5: Which UK city is home to Big Ben?</p>
+<label><input name="q4" type="radio" value="London"/> London</label><br/>
+<label><input name="q4" type="radio" value="Manchester"/> Manchester</label><br/>
+<label><input name="q4" type="radio" value="Birmingham"/> Birmingham</label><br/>
+<label><input name="q4" type="radio" value="Liverpool"/> Liverpool</label><br/>
+</div>
+<div class="question"><p>Q6: Which US artist is known as the 'Queen of Pop'?</p>
+<label><input name="q5" type="radio" value="Madonna"/> Madonna</label><br/>
+<label><input name="q5" type="radio" value="Beyoncé"/> Beyoncé</label><br/>
+<label><input name="q5" type="radio" value="Lady Gaga"/> Lady Gaga</label><br/>
+<label><input name="q5" type="radio" value="Rihanna"/> Rihanna</label><br/>
+</div>
+<div class="question"><p>Q7: Which Nigerian city is known for Yabacon Valley?</p>
+<label><input name="q6" type="radio" value="Lagos"/> Lagos</label><br/>
+<label><input name="q6" type="radio" value="Abuja"/> Abuja</label><br/>
+<label><input name="q6" type="radio" value="Port Harcourt"/> Port Harcourt</label><br/>
+<label><input name="q6" type="radio" value="Ibadan"/> Ibadan</label><br/>
+</div>
+<div class="question"><p>Q8: Which UK actor played Harry Potter?</p>
+<label><input name="q7" type="radio" value="Daniel Radcliffe"/> Daniel Radcliffe</label><br/>
+<label><input name="q7" type="radio" value="Tom Holland"/> Tom Holland</label><br/>
+<label><input name="q7" type="radio" value="Robert Pattinson"/> Robert Pattinson</label><br/>
+<label><input name="q7" type="radio" value="Benedict Cumberbatch"/> Benedict Cumberbatch</label><br/>
+</div>
+<div class="question"><p>Q9: Which US state is known as the Sunshine State?</p>
+<label><input name="q8" type="radio" value="Florida"/> Florida</label><br/>
+<label><input name="q8" type="radio" value="California"/> California</label><br/>
+<label><input name="q8" type="radio" value="Texas"/> Texas</label><br/>
+<label><input name="q8" type="radio" value="Nevada"/> Nevada</label><br/>
+</div>
+<div class="question"><p>Q10: Which Nigerian artist sang 'Last Last'?</p>
+<label><input name="q9" type="radio" value="Burna Boy"/> Burna Boy</label><br/>
+<label><input name="q9" type="radio" value="Olamide"/> Olamide</label><br/>
+<label><input name="q9" type="radio" value="Wizkid"/> Wizkid</label><br/>
+<label><input name="q9" type="radio" value="Fireboy DML"/> Fireboy DML</label><br/>
+</div>
+<button onclick="submitQuiz()" type="button">Submit</button>
+</form>
+<div id="result"></div>
+<div class="leaderboard">
+<h3>Leaderboard</h3>
+<ol id="leaderboardList"></ol>
+</div>
+<script>
+    const correctAnswers = ["Rema", "Adele", "New York", "Osuofia in London", "London", "Madonna", "Lagos", "Daniel Radcliffe", "Florida", "Burna Boy"];
+
+    function submitQuiz() {
+        const username = document.getElementById("username").value.trim();
+        if (!username) {
+            alert("Please enter your name.");
+            return;
+        }
+        let score = 0;
+        for (let i = 0; i < correctAnswers.length; i++) {
+            const radios = document.getElementsByName("q" + i);
+            for (const radio of radios) {
+                if (radio.checked && radio.value === correctAnswers[i]) {
+                    score++;
+                }
+            }
+        }
+        document.getElementById("result").innerHTML = `<h3>${username}, your score is ${score}/10</h3>`;
+        updateLeaderboard(username, score);
+    }
+
+    function updateLeaderboard(name, score) {
+        const key = "leaderboard_" + "Global_Quiz_-_Week_1";
+        let leaderboard = JSON.parse(localStorage.getItem(key)) || [];
+        leaderboard.push({name, score});
+        leaderboard.sort((a, b) => b.score - a.score);
+        leaderboard = leaderboard.slice(0, 10);
+        localStorage.setItem(key, JSON.stringify(leaderboard));
+        renderLeaderboard(leaderboard);
+    }
+
+    function renderLeaderboard(data) {
+        const list = document.getElementById("leaderboardList");
+        list.innerHTML = "";
+        data.forEach(entry => {
+            const li = document.createElement("li");
+            li.textContent = `${entry.name} - ${entry.score}`;
+            list.appendChild(li);
+        });
+    }
+
+    window.onload = function() {
+        const key = "leaderboard_" + "Global_Quiz_-_Week_1";
+        const data = JSON.parse(localStorage.getItem(key)) || [];
+        renderLeaderboard(data);
+    }
+</script>
+</body>
+</html>
