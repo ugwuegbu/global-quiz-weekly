@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Global Quiz - Week 8</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .question { margin-bottom: 20px; }
+        .leaderboard { margin-top: 30px; }
+    </style>
+</head>
+<body>
+    <h1>Global Quiz - Week 8</h1>
+    <form id="quizForm">
+        <label for="name">Enter your name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <div class="question">
+            <p><strong>Q1: Which Nigerian artist released the hit song 'Calm Down'?</strong></p>
+
+            <input type="radio" name="q0" value="Burna Boy" required> Burna Boy<br>
+
+            <input type="radio" name="q0" value="Rema" required> Rema<br>
+
+            <input type="radio" name="q0" value="Wizkid" required> Wizkid<br>
+
+            <input type="radio" name="q0" value="Davido" required> Davido<br>
+</div>
+
+        <div class="question">
+            <p><strong>Q2: Which UK singer is known for the album '21'?</strong></p>
+
+            <input type="radio" name="q1" value="Adele" required> Adele<br>
+
+            <input type="radio" name="q1" value="Ed Sheeran" required> Ed Sheeran<br>
+
+            <input type="radio" name="q1" value="Sam Smith" required> Sam Smith<br>
+
+            <input type="radio" name="q1" value="Dua Lipa" required> Dua Lipa<br>
+</div>
+
+        <div class="question">
+            <p><strong>Q3: Which US city is nicknamed 'The Big Apple'?</strong></p>
+
+            <input type="radio" name="q2" value="Los Angeles" required> Los Angeles<br>
+
+            <input type="radio" name="q2" value="Chicago" required> Chicago<br>
+
+            <input type="radio" name="q2" value="New York" required> New York<br>
+
+            <input type="radio" name="q2" value="Miami" required> Miami<br>
+</div>
+
+        <div class="question">
+            <p><strong>Q4: Which Nollywood movie features the character 'Osuofia'?</strong></p>
+
+            <input type="radio" name="q3" value="Osuofia in London" required> Osuofia in London<br>
+
+            <input type="radio" name="q3" value="The Wedding Party" required> The Wedding Party<br>
+
+            <input type="radio" name="q3" value="Living in Bondage" required> Living in Bondage<br>
+
+            <input type="radio" name="q3" value="Aki na Ukwa" required> Aki na Ukwa<br>
+</div>
+
+        <div class="question">
+            <p><strong>Q5: Which continent is home to the Sahara Desert?</strong></p>
+
+            <input type="radio" name="q4" value="Asia" required> Asia<br>
+
+            <input type="radio" name="q4" value="Africa" required> Africa<br>
+
+            <input type="radio" name="q4" value="Australia" required> Australia<br>
+
+            <input type="radio" name="q4" value="South America" required> South America<br>
+</div>
+
+        <div class="question">
+            <p><strong>Q6: Which Nigerian city is known for Yabacon Valley?</strong></p>
+
+            <input type="radio" name="q5" value="Abuja" required> Abuja<br>
+
+            <input type="radio" name="q5" value="Lagos" required> Lagos<br>
+
+            <input type="radio" name="q5" value="Enugu" required> Enugu<br>
+
+            <input type="radio" name="q5" value="Port Harcourt" required> Port Harcourt<br>
+</div>
+
+        <div class="question">
+            <p><strong>Q7: Which US artist is known as the 'Queen of Pop'?</strong></p>
+
+            <input type="radio" name="q6" value="Madonna" required> Madonna<br>
+
+            <input type="radio" name="q6" value="Beyoncé" required> Beyoncé<br>
+
+            <input type="radio" name="q6" value="Taylor Swift" required> Taylor Swift<br>
+
+            <input type="radio" name="q6" value="Rihanna" required> Rihanna<br>
+</div>
+
+        <div class="question">
+            <p><strong>Q8: Which British actor played Harry Potter?</strong></p>
+
+            <input type="radio" name="q7" value="Daniel Radcliffe" required> Daniel Radcliffe<br>
+
+            <input type="radio" name="q7" value="Tom Holland" required> Tom Holland<br>
+
+            <input type="radio" name="q7" value="Robert Pattinson" required> Robert Pattinson<br>
+
+            <input type="radio" name="q7" value="Benedict Cumberbatch" required> Benedict Cumberbatch<br>
+</div>
+
+        <div class="question">
+            <p><strong>Q9: Which Nigerian song became a global TikTok hit in 2022?</strong></p>
+
+            <input type="radio" name="q8" value="Essence" required> Essence<br>
+
+            <input type="radio" name="q8" value="Calm Down" required> Calm Down<br>
+
+            <input type="radio" name="q8" value="Peru" required> Peru<br>
+
+            <input type="radio" name="q8" value="Last Last" required> Last Last<br>
+</div>
+
+        <div class="question">
+            <p><strong>Q10: Which Marvel movie features Wakanda?</strong></p>
+
+            <input type="radio" name="q9" value="Black Panther" required> Black Panther<br>
+
+            <input type="radio" name="q9" value="Iron Man" required> Iron Man<br>
+
+            <input type="radio" name="q9" value="Thor" required> Thor<br>
+
+            <input type="radio" name="q9" value="Captain America" required> Captain America<br>
+</div>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <div class="leaderboard">
+        <h2>Leaderboard</h2>
+        <ul id="leaderboardList"></ul>
+    </div>
+
+    <p>✅ Finished the quiz? <a href="https://forms.gle/CmRSbPrsGzgbkrR9A" target="_blank">Submit your score here</a></p>
+
+    <script>
+        const correctAnswers = ['Rema', 'Adele', 'New York', 'Osuofia in London', 'Africa', 'Lagos', 'Madonna', 'Daniel Radcliffe', 'Calm Down', 'Black Panther'];
+
+        document.getElementById('quizForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let score = 0;
+            for (let i = 0; i < correctAnswers.length; i++) {
+                const selected = document.querySelector('input[name="q' + i + '"]:checked');
+                if (selected && selected.value === correctAnswers[i]) {
+                    score++;
+                }
+            }
+            const name = document.getElementById('name').value;
+            const leaderboard = JSON.parse(localStorage.getItem('leaderboard_week_8') || "[]");
+            leaderboard.push({ name: name, score: score });
+            leaderboard.sort((a, b) => b.score - a.score);
+            localStorage.setItem('leaderboard_week_8', JSON.stringify(leaderboard));
+            displayLeaderboard();
+        });
+
+        function displayLeaderboard() {
+            const leaderboard = JSON.parse(localStorage.getItem('leaderboard_week_8') || "[]");
+            const list = document.getElementById('leaderboardList');
+            list.innerHTML = "";
+            leaderboard.forEach(entry => {
+                const li = document.createElement('li');
+                li.textContent = entry.name + ": " + entry.score;
+                list.appendChild(li);
+            });
+        }
+
+        window.onload = displayLeaderboard;
+    </script>
+</body>
+</html>
